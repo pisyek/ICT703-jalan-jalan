@@ -168,6 +168,7 @@ export default function CommunityPage() {
               location="Ayer Keroh, Melaka"
               type="Promotion Event"
               badges={["Family-friendly", "School Holiday"]}
+              image="event-01.png"
               imageGradient="bg-gradient-to-br from-yellow-200 to-orange-300"
             />
             <EventCard
@@ -177,6 +178,7 @@ export default function CommunityPage() {
               location="Ayer Molek, Melaka"
               type="Travel Fair"
               badges={["Muslim-friendly", "Travel Deals"]}
+              image="event-02.png"
               imageGradient="bg-gradient-to-br from-green-200 to-teal-300"
             />
             <EventCard
@@ -186,6 +188,7 @@ export default function CommunityPage() {
               location="Pantai Klebang, Melaka"
               type="Festival"
               badges={["Family-friendly", "Popular Event"]}
+              image="event-03.png"
               imageGradient="bg-gradient-to-br from-purple-200 to-pink-300"
             />
           </div>
