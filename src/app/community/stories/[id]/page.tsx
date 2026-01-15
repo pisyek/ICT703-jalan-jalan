@@ -110,7 +110,7 @@ export default function StoryDetailPage({
       <GroupLabel group={4} />
 
       {/* Main Content */}
-      <main className="container mx-auto px-4 sm:px-6 md:px-12 lg:px-14 xl:px-[56px] py-8">
+      <main className="container mx-auto px-4 sm:px-6 md:px-12 lg:px-14 xl:px-[56px] py-8 pb-16">
 
         {/* Header Section */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
