@@ -10,56 +10,122 @@ export default function UpcomingEventsPage() {
       title: "Jom Cuti Sekolah 2025",
       subtitle: "School holiday travel deals and family activities",
       date: "12 - 15 January 2025",
-      location: "Kuala Lumpur",
+      location: "Ayer Keroh, Melaka",
       type: "Promotion Event",
       badges: ["Family-friendly", "School Holiday"],
-      imageGradient: "bg-gradient-to-br from-yellow-200 to-orange-300"
+      imageGradient: "bg-gradient-to-br from-yellow-200 to-orange-300",
+      image: "event-01.png"
     },
     {
       title: "Cuti Cuti Muslim-Friendly Fair",
       subtitle: "Muslim-friendly travel packages and experiences",
       date: "18- 20 January 2025",
-      location: "Kuala Lumpur",
+      location: "Ayer Molek, Melaka",
       type: "Travel Fair",
       badges: ["Muslim-friendly", "Travel Deals"],
-      imageGradient: "bg-gradient-to-br from-green-200 to-teal-300"
+      imageGradient: "bg-gradient-to-br from-green-200 to-teal-300",
+      image: "event-02.png"
     },
     {
       title: "Play Your Way to Joy Festival",
       subtitle: "Interactive activities and attractions for all ages",
       date: "5- 7 February",
-      location: "Sunway Lagoon, Selangor",
+      location: "Ayer Keroh, Melaka",
       type: "Festival",
       badges: ["Family-friendly", "Popular Event"],
-      imageGradient: "bg-gradient-to-br from-purple-200 to-pink-300"
+      imageGradient: "bg-gradient-to-br from-purple-200 to-pink-300",
+      image: "event-03.png"
     },
     {
       title: "Jom Cuti Sekolah 2025",
       subtitle: "School holiday travel deals and family activities",
       date: "12 - 15 January 2025",
-      location: "Kuala Lumpur",
+      location: "Ayer Keroh, Melaka",
       type: "Promotion Event",
       badges: ["Family-friendly", "School Holiday"],
-      imageGradient: "bg-gradient-to-br from-yellow-200 to-orange-300"
+      imageGradient: "bg-gradient-to-br from-yellow-200 to-orange-300",
+      image: "event-01.png"
     },
     {
       title: "Cuti Cuti Muslim-Friendly Fair",
       subtitle: "Muslim-friendly travel packages and experiences",
       date: "18- 20 January 2025",
-      location: "Kuala Lumpur",
+      location: "Ayer Molek, Melaka",
       type: "Travel Fair",
       badges: ["Muslim-friendly", "Travel Deals"],
-      imageGradient: "bg-gradient-to-br from-green-200 to-teal-300"
+      imageGradient: "bg-gradient-to-br from-green-200 to-teal-300",
+      image: "event-02.png"
     },
     {
       title: "Play Your Way to Joy Festival",
       subtitle: "Interactive activities and attractions for all ages",
       date: "5- 7 February",
-      location: "Sunway Lagoon, Selangor",
+      location: "Ayer Keroh, Melaka",
       type: "Festival",
       badges: ["Family-friendly", "Popular Event"],
-      imageGradient: "bg-gradient-to-br from-purple-200 to-pink-300"
+      imageGradient: "bg-gradient-to-br from-purple-200 to-pink-300",
+      image: "event-03.png"
     },
+    {
+      title: "Jom Cuti Sekolah 2025",
+      subtitle: "School holiday travel deals and family activities",
+      date: "12 - 15 January 2025",
+      location: "Ayer Keroh, Melaka",
+      type: "Promotion Event",
+      badges: ["Family-friendly", "School Holiday"],
+      imageGradient: "bg-gradient-to-br from-yellow-200 to-orange-300",
+      image: "event-01.png"
+    },
+    {
+      title: "Cuti Cuti Muslim-Friendly Fair",
+      subtitle: "Muslim-friendly travel packages and experiences",
+      date: "18- 20 January 2025",
+      location: "Ayer Molek, Melaka",
+      type: "Travel Fair",
+      badges: ["Muslim-friendly", "Travel Deals"],
+      imageGradient: "bg-gradient-to-br from-green-200 to-teal-300",
+      image: "event-02.png"
+    },
+    {
+      title: "Play Your Way to Joy Festival",
+      subtitle: "Interactive activities and attractions for all ages",
+      date: "5- 7 February",
+      location: "Ayer Keroh, Melaka",
+      type: "Festival",
+      badges: ["Family-friendly", "Popular Event"],
+      imageGradient: "bg-gradient-to-br from-purple-200 to-pink-300",
+      image: "event-03.png"
+    },
+    {
+      title: "Jom Cuti Sekolah 2025",
+      subtitle: "School holiday travel deals and family activities",
+      date: "12 - 15 January 2025",
+      location: "Ayer Keroh, Melaka",
+      type: "Promotion Event",
+      badges: ["Family-friendly", "School Holiday"],
+      imageGradient: "bg-gradient-to-br from-yellow-200 to-orange-300",
+      image: "event-01.png"
+    },
+    {
+      title: "Cuti Cuti Muslim-Friendly Fair",
+      subtitle: "Muslim-friendly travel packages and experiences",
+      date: "18- 20 January 2025",
+      location: "Ayer Molek, Melaka",
+      type: "Travel Fair",
+      badges: ["Muslim-friendly", "Travel Deals"],
+      imageGradient: "bg-gradient-to-br from-green-200 to-teal-300",
+      image: "event-02.png"
+    },
+    {
+      title: "Play Your Way to Joy Festival",
+      subtitle: "Interactive activities and attractions for all ages",
+      date: "5- 7 February",
+      location: "Ayer Keroh, Melaka",
+      type: "Festival",
+      badges: ["Family-friendly", "Popular Event"],
+      imageGradient: "bg-gradient-to-br from-purple-200 to-pink-300",
+      image: "event-03.png"
+    }
   ];
 
   return (
@@ -67,21 +133,23 @@ export default function UpcomingEventsPage() {
       <Navigation />
       <GroupLabel group={4} />
 
-      {/* Title Section */}
-      <section className="px-4 sm:px-6 md:px-12 lg:px-16 xl:px-[90px] py-8">
-        <h1 className="text-xl md:text-2xl lg:text-3xl font-semibold text-slate-700" style={{ letterSpacing: "-0.03em" }}>
-          Upcoming Events
-        </h1>
-      </section>
+      <main className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-12 xl:px-24 py-8">
+        {/* Title Section */}
+        <section className="relative z-10 py-8">
+          <h2 className="text-2xl md:text-3xl font-bold text-neutral-800 dark:text-neutral-100">
+            Upcoming Events
+          </h2>
+        </section>
 
-      {/* Events Grid */}
-      <section className="px-4 sm:px-6 md:px-12 lg:px-16 xl:px-[90px] pb-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8">
-          {events.map((event, i) => (
-            <EventCard key={i} {...event} />
-          ))}
-        </div>
-      </section>
+        {/* Events Grid */}
+        <section className="relative z-10 pb-18">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8">
+            {events.map((event, i) => (
+              <EventCard key={i} {...event} />
+            ))}
+          </div>
+        </section>
+      </main>
     </div>
   );
 }
