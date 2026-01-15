@@ -141,9 +141,9 @@ export default function CommunityStoriesPage() {
         {/* Title Section */}
         <section className="relative py-8">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
-            <h1 className="text-xl md:text-2xl lg:text-3xl font-semibold text-slate-700" style={{ letterSpacing: "-0.03em" }}>
+            <h2 className="text-2xl md:text-3xl font-bold text-neutral-800 dark:text-neutral-100">
               Community Story
-            </h1>
+            </h2>
             <Link href="/community/stories/create">
               <Button className="bg-blue-900 hover:bg-blue-800 text-white font-semibold px-4 py-2 rounded-lg w-full sm:w-auto">
                 Create Community Story
