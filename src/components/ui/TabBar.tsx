@@ -1,38 +1,55 @@
-"use client";
+"use client";  // To mark this as a Client Component
 
+import { useState } from "react";
+import { usePathname } from "next/navigation";  // Hook to get the current pathname
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 
 const TabBar = () => {
-  const pathname = usePathname();
+  const pathname = usePathname(); // Get the current path from the URL
 
+  // Function to determine if the current tab is active
   const isActive = (tab: string) => {
-    if (tab === "dashboard") return pathname === "/dashboard";
-    if (tab === "itenary") return pathname === "/dashboard/itenary";
-    if (tab === "member") return pathname === "/dashboard/member";
+    // Compare pathname with exact tab route
+    if (tab === "dashboard") {
+      return pathname === "/dashboard";
+    }
+    if (tab === "itenary") {
+      return pathname === "/dashboard/itenary";
+    }
+    if (tab === "member") {
+      return pathname === "/dashboard/member";
+    }
     return false;
   };
 
   return (
     <div className="bg-white shadow-md py-4 px-6 flex justify-between items-center border-b border-gray-200">
       <div className="flex items-center space-x-6">
-        <Link href="/dashboard">
+        {/* Dashboard Tab */}
+        <Link href="/dashboard" passHref>
           <span
-            className={`cursor-pointer text-lg font-semibold ${isActive("dashboard") ? "text-blue-700" : "text-gray-600"}`}
+            className={`cursor-pointer text-lg font-semibold ${isActive("dashboard") ? "text-blue-700" : "text-gray-600"
+              }`}
           >
             Dashboard
           </span>
         </Link>
-        <Link href="/dashboard/member">
+
+        {/* Members Tab */}
+        <Link href="/dashboard/member" passHref>
           <span
-            className={`cursor-pointer text-lg font-semibold ${isActive("member") ? "text-blue-700" : "text-gray-600"}`}
+            className={`cursor-pointer text-lg font-semibold ${isActive("member") ? "text-blue-700" : "text-gray-600"
+              }`}
           >
             Members
           </span>
         </Link>
-        <Link href="/dashboard/itenary">
+
+        {/* Itinerary Tab */}
+        <Link href="/dashboard/itenary" passHref>
           <span
-            className={`cursor-pointer text-lg font-semibold ${isActive("itenary") ? "text-blue-700" : "text-gray-600"}`}
+            className={`cursor-pointer text-lg font-semibold ${isActive("itenary") ? "text-blue-700" : "text-gray-600"
+              }`}
           >
             Itinerary
           </span>
