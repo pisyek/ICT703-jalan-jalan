@@ -4,7 +4,12 @@ import { useState } from "react";
 import { usePathname } from "next/navigation";  // Hook to get the current pathname
 import Link from "next/link";
 
-const TabBar = () => {
+type TabBarProps = {
+  totalCost?: number;
+  memberCount?: number;
+};
+
+const TabBar = ({ totalCost, memberCount }: TabBarProps) => {
   const pathname = usePathname(); // Get the current path from the URL
 
   // Function to determine if the current tab is active
@@ -21,6 +26,8 @@ const TabBar = () => {
     }
     return false;
   };
+
+  const costPerPerson = totalCost && memberCount ? totalCost / memberCount : 0;
 
   return (
     <div className="bg-white shadow-md py-4 px-6 flex justify-between items-center border-b border-gray-200">
@@ -56,8 +63,10 @@ const TabBar = () => {
         </Link>
       </div>
       <div className="text-right">
-        <div className="text-xl text-blue-800">Total Trip Cost: RM1,400</div>
-        <div className="text-sm text-gray-500">RM350 per person</div>
+        <div className="text-xl text-blue-800">Total Trip Cost: RM{totalCost ?? 1400}</div>
+        <div className="text-sm text-gray-500">
+          {costPerPerson > 0 ? `RM${costPerPerson.toFixed(0)} per person` : 'RM350 per person'}
+        </div>
       </div>
     </div>
   );

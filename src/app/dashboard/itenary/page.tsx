@@ -45,60 +45,7 @@ type Destination = {
 
 export default function ItineraryPage() {
   const [selectedDay, setSelectedDay] = React.useState("1")
-
-  const day1Activities = [
-    "Arrival and hotel check-in at city centre",
-    "Visit A Famosa Portuguese fortress ruins",
-    "Explore St. Paul's Hill and Christ Church",
-    "Jonker Street night market and local dinner",
-  ]
-
-  const conflictIssues: ConflictIssue[] = [
-    {
-      id: "1",
-      member: "Nurul Aisyah",
-      description: "Nurul Aisyah prefers higher-budget trips (min RM1000)",
-      severity: "high",
-    },
-    {
-      id: "2",
-      member: "Wong Wei Ming",
-      description: "Wong Wei Ming prefers higher-budget trips (min RM1500)",
-      severity: "high",
-    },
-    {
-      id: "3",
-      member: "Priya Devi",
-      description: "Priya Devi prefers higher-budget trips (min RM800)",
-      severity: "high",
-    },
-    {
-      id: "4",
-      member: "Ahmad Zaki",
-      description: "Ahmad Zaki prefers higher-budget trips (min RM2000)",
-      severity: "high",
-    },
-    {
-      id: "5",
-      member: "Wong Wei Ming",
-      description: "Wong Wei Ming may not enjoy the selected destinations",
-      severity: "medium",
-    },
-    {
-      id: "6",
-      member: "Ahmad Zaki",
-      description: "Ahmad Zaki may not enjoy the selected destinations",
-      severity: "medium",
-    },
-    {
-      id: "7",
-      member: "Wong Wei Ming",
-      description: "Wong Wei Ming prefers different seasons for travel",
-      severity: "low",
-    },
-  ]
-
-  const selectedDestinations: Destination[] = [
+  const [currentSelectedDestinations, setCurrentSelectedDestinations] = React.useState<Destination[]>([
     {
       id: "1",
       name: "Melaka Historic City",
@@ -135,9 +82,8 @@ export default function ItineraryPage() {
       ],
       note: "Wong, Ahmad may not enjoy this destination",
     },
-  ]
-
-  const availableDestinations: Destination[] = [
+  ]);
+  const [currentAvailableDestinations, setCurrentAvailableDestinations] = React.useState<Destination[]>([
     {
       id: "3",
       name: "A Famosa & St. Paul's Hill",
@@ -162,7 +108,20 @@ export default function ItineraryPage() {
       groupMatch: 0,
       individualMatches: [],
     },
-  ]
+  ]);
+
+  const totalCost = currentSelectedDestinations.reduce((acc, dest) => acc + parseInt(dest.cost.replace("RM", "")), 0);
+  const memberCount = 4; // Assuming a fixed member count for now
+
+  const handleSelectDestination = (destination: Destination) => {
+    setCurrentAvailableDestinations(prev => prev.filter(d => d.id !== destination.id));
+    setCurrentSelectedDestinations(prev => [...prev, destination]);
+  };
+
+  const handleDeselectDestination = (destination: Destination) => {
+    setCurrentSelectedDestinations(prev => prev.filter(d => d.id !== destination.id));
+    setCurrentAvailableDestinations(prev => [...prev, destination]);
+  };
 
   const getSeverityColor = (severity: ConflictIssue["severity"]) => {
     switch (severity) {
@@ -192,10 +151,37 @@ export default function ItineraryPage() {
     return "bg-red-100 text-red-800"
   }
 
+  const day1Activities = [
+    "Morning: Arrive in Melaka, check into hotel.",
+    "Afternoon: Explore A Famosa fortress and St. Paul's Hill.",
+    "Evening: Dinner and shopping at Jonker Street Night Market.",
+  ];
+
+  const conflictIssues: ConflictIssue[] = [
+    {
+      id: "1",
+      member: "Wong",
+      description: "Budget for shopping is too low.",
+      severity: "high",
+    },
+    {
+      id: "2",
+      member: "Ahmad",
+      description: "Not interested in historical sites.",
+      severity: "medium",
+    },
+    {
+      id: "3",
+      member: "Priya",
+      description: "Prefers beach destinations.",
+      severity: "low",
+    },
+  ];
+
   return (
-    <div className="min-h-screen bg-gradient-to-b from-violet-50 to-slate-100">
+    <div className="min-h-screen bg-linear-to-b from-violet-50 to-slate-100">
       <Navigation />
-      <TabBar />
+      <TabBar totalCost={totalCost} memberCount={memberCount} />
 
       <main className="container mx-auto px-4 sm:px-6 lg:px-12 xl:px-24 py-8">
         <div className="flex flex-col gap-6">
@@ -206,7 +192,7 @@ export default function ItineraryPage() {
                 <CardTitle className="text-xl font-bold">
                   Full Trip Itinerary
                 </CardTitle>
-                <p className="text-sm text-slate-500">3 days • 2 destinations</p>
+                <p className="text-sm text-slate-500">3 days • {currentSelectedDestinations.length} destinations</p>
               </div>
             </CardHeader>
             <CardContent>
@@ -240,7 +226,7 @@ export default function ItineraryPage() {
                 </Tabs>
 
                 {/* Day Content */}
-                <div className="flex-1 border-l-4 border-[#AD46FF] bg-gradient-to-r from-violet-50 to-pink-50 rounded-r-xl p-6">
+                <div className="flex-1 border-l-4 border-[#AD46FF] bg-linear-to-r from-violet-50 to-pink-50 rounded-r-xl p-6">
                   <Tabs value={selectedDay} onValueChange={setSelectedDay}>
                     <TabsContent value="1" className="mt-0">
                       <div className="space-y-4">
@@ -279,7 +265,7 @@ export default function ItineraryPage() {
                           <div className="flex-1 max-w-xs">
                             <Progress
                               value={47}
-                              className="h-2 bg-slate-200 [&_[data-slot=progress-indicator]]:bg-violet-500"
+                              className="h-2 bg-slate-200 **:data-[slot=progress-indicator]:bg-violet-500"
                             />
                           </div>
                           <span className="text-xs font-bold text-violet-700">
@@ -461,11 +447,11 @@ export default function ItineraryPage() {
                 Selected Destinations
               </h2>
               <p className="text-sm text-slate-500">
-                2 destination(s) selected
+                {currentSelectedDestinations.length} destination(s) selected
               </p>
             </div>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-              {selectedDestinations.map((destination) => (
+              {currentSelectedDestinations.map((destination) => (
                 <Card
                   key={destination.id}
                   className="border-[#AD46FF] bg-white"
@@ -481,7 +467,7 @@ export default function ItineraryPage() {
                             {destination.description}
                           </p>
                         </div>
-                        <Button variant="ghost" size="icon" className="h-8 w-8">
+                        <Button variant="ghost" size="icon" className="h-8 w-8" onClick={() => handleDeselectDestination(destination)}>
                           <X className="size-4" />
                         </Button>
                       </div>
@@ -515,7 +501,7 @@ export default function ItineraryPage() {
                         </div>
                         <Progress
                           value={destination.groupMatch}
-                          className="h-2 bg-slate-200 [&_[data-slot=progress-indicator]]:bg-violet-500"
+                          className="h-2 bg-slate-200 **:data-[slot=progress-indicator]:bg-violet-500"
                         />
                       </div>
 
@@ -559,7 +545,7 @@ export default function ItineraryPage() {
             </CardHeader>
             <CardContent>
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-                {availableDestinations.map((destination) => (
+                {currentAvailableDestinations.map((destination) => (
                   <Card
                     key={destination.id}
                     className="border border-slate-200 bg-white"
@@ -570,7 +556,7 @@ export default function ItineraryPage() {
                           <h3 className="text-lg font-bold text-slate-900">
                             {destination.name}
                           </h3>
-                          <Button variant="ghost" size="icon" className="h-8 w-8">
+                          <Button variant="ghost" size="icon" className="h-8 w-8" onClick={() => handleSelectDestination(destination)}>
                             <Plus className="size-4" />
                           </Button>
                         </div>
